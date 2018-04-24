@@ -12,7 +12,7 @@ public class HomePage extends AbstractPage {
     @FindBy(xpath = "//*[@id=\"main_table\"]/span[4]/a")
     private WebElement languageButton;
 
-    @FindBy(xpath = "//*[@id=\"main_img_div\"]/div[1]/div/h2/a")
+    @FindBy(xpath = "//*[@id=\"dv_6\"]/div/div[1]/div/h2/a")
     private WebElement electronicsSection;
 
     @FindBy(xpath = "/html/body/div[1]/div/span[2]/span/b/a")
