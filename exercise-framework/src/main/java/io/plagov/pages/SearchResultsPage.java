@@ -6,8 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class SearchResultsPage extends AbstractPage {
 
@@ -55,18 +57,27 @@ public class SearchResultsPage extends AbstractPage {
     }
 
     public List<WebElement> getSearchResultsRows() {
-        // exclude header and footer of a table
-        if ((searchResultsRows().size() - 2) > 0) {
+        if (!searchResultsRows().isEmpty()) {
             return searchResultsRows();
         } else {
             return Collections.emptyList();
         }
     }
 
-    public SearchResultsPage selectSearchResults(int announcementsToSelect) {
+    public SearchResultsPage selectRandomSearchResults(int announcementsToSelect) {
+
+        Random random = new Random();
+        List<WebElement> randomSearchResults = new ArrayList<>();
+
         for (int i = 1; i <= announcementsToSelect; i++) {
-            searchResultsRows().get(i).findElement(By.tagName("input")).click();
+            int pick = random.nextInt(getSearchResultsRows().size());
+            randomSearchResults.add(getSearchResultsRows().get(pick));
         }
+
+        for (WebElement randomResult : randomSearchResults) {
+            randomResult.findElement(By.tagName("input")).click();
+        }
+
         return this;
     }
 
