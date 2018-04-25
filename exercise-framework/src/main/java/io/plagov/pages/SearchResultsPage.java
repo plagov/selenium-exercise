@@ -16,7 +16,7 @@ public class SearchResultsPage extends AbstractPage {
     @FindBy(id = "a_fav_sel")
     private WebElement bookmarksAdd;
 
-    @FindBy(xpath = "//*[@id=\"page_main\"]/tbody/tr/td/div[2]/span[3]")
+    @FindBy(name = "sid")
     private WebElement typeOfDeal;
 
     @FindBy(xpath = "//*[@id=\"page_main\"]/tbody/tr/td/table[1]/tbody/tr/td[4]/a")
@@ -48,7 +48,7 @@ public class SearchResultsPage extends AbstractPage {
         return this;
     }
 
-    public SearchResultsPage selectTypeOfDeal(String typeOfDealOption) {
+    public SearchResultsPage filterDealByType(String typeOfDealOption) {
         Select typeOfDealDropdown = new Select(typeOfDeal);
         typeOfDealDropdown.selectByVisibleText(typeOfDealOption);
         return this;
