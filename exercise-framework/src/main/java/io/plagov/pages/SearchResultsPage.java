@@ -36,6 +36,9 @@ public class SearchResultsPage extends AbstractPage {
         return searchResultsRows;
     }
 
+    @FindBy(xpath = "//*[@id=\"head_line\"]/td[2]/noindex/a")
+    private WebElement priceSortColumn;
+
     public SearchResultsPage(WebDriver driver) {
         super(driver);
     }
@@ -56,7 +59,7 @@ public class SearchResultsPage extends AbstractPage {
         return new SearchPage(getDriver());
     }
 
-    public List<WebElement> getSearchResultsRows() {
+    private List<WebElement> getSearchResultsRows() {
         if (!searchResultsRows().isEmpty()) {
             return searchResultsRows();
         } else {
@@ -78,6 +81,11 @@ public class SearchResultsPage extends AbstractPage {
             randomResult.findElement(By.tagName("input")).click();
         }
 
+        return this;
+    }
+
+    public SearchResultsPage sortResultsByPrice() {
+        priceSortColumn.click();
         return this;
     }
 
