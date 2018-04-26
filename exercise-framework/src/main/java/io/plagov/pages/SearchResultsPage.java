@@ -39,6 +39,9 @@ public class SearchResultsPage extends AbstractPage {
     @FindBy(xpath = "//*[@id=\"head_line\"]/td[2]/noindex/a")
     private WebElement priceSortColumn;
 
+    @FindBy(xpath = "//*[@id=\"main_table\"]/span[2]/span/b/a")
+    private WebElement bookmarksPage;
+
     public SearchResultsPage(WebDriver driver) {
         super(driver);
     }
@@ -87,6 +90,11 @@ public class SearchResultsPage extends AbstractPage {
     public SearchResultsPage sortResultsByPrice() {
         priceSortColumn.click();
         return this;
+    }
+
+    public BookmarksPage openBookmarksPage() {
+        bookmarksPage.click();
+        return new BookmarksPage(getDriver());
     }
 
 }
