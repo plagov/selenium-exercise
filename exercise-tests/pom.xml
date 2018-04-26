@@ -14,4 +14,12 @@
   <version>1.0-SNAPSHOT</version>
   <description>Exercise Tests</description>
 
+  <dependencies>
+    <dependency>
+      <groupId>io.plagov</groupId>
+      <artifactId>exercise-framework</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+  </dependencies>
+
 </project>
