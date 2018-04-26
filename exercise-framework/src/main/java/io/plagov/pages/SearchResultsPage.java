@@ -7,7 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -27,7 +26,7 @@ public class SearchResultsPage extends AbstractPage {
 
     private List<WebElement> searchResultsRows;
 
-    private List<WebElement> searchResultsRows() {
+    private List<WebElement> getSearchResultsRows() {
         try {
             searchResultsRows = searchResultsTable.findElements(By.cssSelector("tr[style=\"cursor: pointer;\"]"));
         } catch (NullPointerException npe) {
@@ -62,28 +61,25 @@ public class SearchResultsPage extends AbstractPage {
         return new SearchPage(getDriver());
     }
 
-    private List<WebElement> getSearchResultsRows() {
-        if (!searchResultsRows().isEmpty()) {
-            return searchResultsRows();
-        } else {
-            return Collections.emptyList();
-        }
+    private List<WebElement> randomSearchResults = new ArrayList<>();
+
+    public List<WebElement> getRandomSearchResults() {
+        return this.randomSearchResults;
     }
 
-    public SearchResultsPage selectRandomSearchResults(int announcementsToSelect) {
-
+    private void generateRandomSearchResults(int announcementsToSelect) {
         Random random = new Random();
-        List<WebElement> randomSearchResults = new ArrayList<>();
-
-        for (int i = 1; i <= announcementsToSelect; i++) {
+        for (int i = 0; i < announcementsToSelect; i++) {
             int pick = random.nextInt(getSearchResultsRows().size());
             randomSearchResults.add(getSearchResultsRows().get(pick));
         }
+    }
 
+    public SearchResultsPage selectRandomSearchResults(int numbersToClick) {
+        generateRandomSearchResults(numbersToClick);
         for (WebElement randomResult : randomSearchResults) {
             randomResult.findElement(By.tagName("input")).click();
         }
-
         return this;
     }
 
