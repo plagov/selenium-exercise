@@ -22,14 +22,14 @@ public class SearchResultsPage extends AbstractPage {
     @FindBy(xpath = "//*[@id=\"page_main\"]/tbody/tr/td/table[1]/tbody/tr/td[4]/a")
     private WebElement advancedSearch;
 
-    @FindBy(xpath = "//*[@id=\"page_main\"]/tbody/tr/td/table[2]/tbody")
+    @FindBy(id = "page_main")
     private WebElement searchResultsTable;
 
     private List<WebElement> searchResultsRows;
 
     private List<WebElement> searchResultsRows() {
         try {
-            searchResultsRows = searchResultsTable.findElements(By.tagName("tr"));
+            searchResultsRows = searchResultsTable.findElements(By.cssSelector("tr[style=\"cursor: pointer;\"]"));
         } catch (NullPointerException npe) {
             npe.getStackTrace();
         }
