@@ -13,7 +13,7 @@ public class ElectronicsPage extends AbstractPage {
         super(driver);
     }
 
-    public SearchPage openElectronicsSearchPage() {
+    public SearchPage openSearchPage() {
         searchMenu.click();
         return new SearchPage(getDriver());
     }
