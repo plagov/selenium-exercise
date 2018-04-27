@@ -23,7 +23,7 @@ public class CheckRandomlySelectedBookmarksTest extends Browser {
     private int numberOfSearchResults = 3;
 
     @Test
-    public void myAnnouncements() {
+    public void testRandomlySelectedItemsToBookmarks() {
 
         searchResultsPage = homePage.openHomePage()
             .switchLanguage()
